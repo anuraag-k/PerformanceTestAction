@@ -14,59 +14,41 @@ This action enables you to run HCL OneTest Performace tests.
 ```yaml
 name: HCL OneTest Performance
 
-on:
-    workflow_dispatch:
-        inputs:
-            workspace:
-                description: 'Workspace'
-                required: true
-            project:
-                description: 'Project'
-                required: true
-            suite:
-                description: 'Test Suite Name'
-                required: true
-            imShared:
-                description: 'IMShared Path'
-                required: false
-            configFile:
-                description: 'Configfile'
-                required: false
-            swapDatasets:
-                description: 'Dataset Override'
-                required: false
-            duration:
-                description: 'Duration'
-                required: false
-            exportLog:
-                description: 'Exportlog'
-                required: false
-            exportStats:
-                description: 'Exportstats'
-                required: false
-            multipleValues:
-                description: 'Multiple Values'
-                required: false
+on: workflow_dispatch
 
 jobs:
-
-    Performace-Action:
+    Performance-Action:
         runs-on: self-hosted
         name: HCL OneTest Performance
         steps:
          - name: HCL OneTest Performance
-           uses: SonaHJ/PerformanceAction@main
+           uses: anuraag-k/PerformanceTestAction@main
            with:
-            workspace: '${{ github.event.inputs.workspace }}'
-            project: '${{ github.event.inputs.project }}'
-            suite: '${{ github.event.inputs.suite }}'
-            imShared: '${{ github.event.inputs.imshared }}'
-            configFile: '${{ github.event.inputs.configFile }}'
-            swapDatasets: '${{ github.event.inputs.swapDatasets }}'
-            duration: '${{ github.event.inputs.duration }}'
-            exportLog: '${{ github.event.inputs.exportLog }}'
-            exportStats: '${{ github.event.inputs.exportStats }}'
-            multipleValues: '${{ github.event.inputs.multipleValues }}'
+            workspace:
+            project: 
+            suite: 
+            imShared: 
+            exportLog: 
+            exportStats: 
+            exportStatsHtml: 
+            exportStatsFormat: 
+            results: 
+            userComments: 
+            overwrite: 
+            publish: 
+            publishFor: 
+            publishReports: 
+            vmArgs: 
+            configFile: 
+            swapDatasets:
+            duration:
+            exportStatReportList: 
+            reportHistory:
+            labels:
+            rate:
+            overrideRmLabels:
+            users:
+            varFile:
 ```
 7. Replace the example input values with your details.
 8. Push it into the main branch
@@ -98,7 +80,7 @@ To configure agent:
 
 ### `configFile`
 
-**Optional** The complete path to a file that contains the parameters for a test or schedule run, If Config file is specified then no other fields will be required.
+**Optional** The complete path to a file that contains the parameters for a test or schedule run. If Config file is specified then no other fields will be required.
 
 ### `swapDatasets`
 
@@ -106,7 +88,7 @@ To configure agent:
 
 ### `duration`
 
-**Optional** You can use this argument to specify the duration of the stages in the Rate Schedule
+**Optional** You can use this argument to specify the duration of the stages in the Rate Schedule.
 
 ### `exportLog`
 
@@ -114,61 +96,46 @@ To configure agent:
 
 ### `exportStats`
 
-**Optional** The complete path to a directory in which to store exported statistical report data.
-
-### `multipleValues`
-
-you may only define up to 10 inputs for a workflow_dispatch event. Remaining inputs need to be Key=Value pair.
-
-https://github.community/t/you-may-only-define-up-to-10-inputs-for-a-workflow-dispatch-event/160733
-
-https://github.com/github/docs/issues/15710
-
-Specify the below inputs in the Key=Value format.
-    Ex: publish=publish_URL_val|usercomments=Value2
-
-**Note that separator between the key-value pairs is '|' character.**
-
-## Supported multipleValues inputs
+**Optional** Use this option to provide the complete path to a directory that you can use to store the exported report in a comma-separated values (CSV) format.
 
 ### `exportStatsHtml`
-The complete path to a directory in which to export web analytic results. The results are exported in the specified directory. Analyze the results on a web browser without using the test workbench.
+**Optional** Use this option to provide the complete path to a directory that you can use to export web analytic results. You can analyze the results on a web browser without using HCL OneTest™ Performance.
 
 ### `exportStatsFormat`
-Use this field to enter one or more formats for the reports that you want to export by using a comma as a separator. The options are simple.csv, full.csv, simple.json, full.json, csv, and json. When you want to export both simple and full reports in json or csv format, you can specify json or csv as the options. The reports are saved to the location specified in the Exported Statistical Report Data File field. This field must be used in conjunction with Exported Statistical Report Data File field.
+**Optional** Use this field to enter one or more formats for the reports that you want to export by using a comma as a separator. The options are simple.csv, full.csv, simple.json, full.json, csv, and json. When you want to export both simple and full reports in json or csv format, you can specify json or csv as the options. The reports are saved to the location specified in the exportStats field. This field must be used in conjunction with exportStats field.
 
 ### `reportHistory`
-Optional. Use this command when you want to view a record of all events that occurred during a test or schedule run, For example - jaeger,testlog.
+**Optional** Use this option when you want to view a record of all events that occurred during a test or schedule run. Supported values are jaeger, testlog, null.
 
 ### `labels`
-Use this option to add labels to test results. To add multiple labels to a test result, you must separate each label by using a comma.
+**Optional** Use this option to add labels to test results. To add multiple labels to a test result, you must separate each label by using a comma.
 
 ### `users`
-Overrides the default number of virtual users in the run. For a schedule, the default is the number of users specified in the schedule editor. For a test, the default is one user.
+**Optional** Overrides the default number of virtual users in the run. For a schedule, the default is the number of users specified in the schedule editor. For a test, the default is one user.
 
 ### `overwrite`
-Determines whether a results file with the same name is overwritten. The default value, true, means that the results file is overwritten.
+**Optional** Determines whether a result file with the same name is overwritten. The default value, false, indicates that the new result file is created. If the value is true, the file is overwritten and retains the same file name.
 
 ### `publish`
-Optional. You can use this option to publish test results to HCL OneTest Server. The format is: serverURL#project.name=projectName&teamspace.name=teamspaceName. Example: https://localhost:5443/#project.name=test&teamspace.name=ts1
+**Optional** YYou can use this parameter to publish test results to the Server. The format is: serverURL#project.name=projectName&teamspace.name=teamspaceName. If the name of the project or team space contains a special character, then you must replace it with %<Hex_value_of_special_character>.
 
 ### `publishFor`
-Optional. You can use this option to publish the test results based on the completion status of the tests, supported values are FAIL,PASS,INCONCLUSIVE,ERROR,ALL.
+**Optional** You can use this option to publish the test results based on the completion status of the tests, supported values are FAIL,PASS,INCONCLUSIVE,ERROR,ALL.
 
 ### `publishReports`
-Optional. You can use this option to specify the reports to be published to HCL OneTest Server. The supported values are STATS,TESTLOG.
+**Optional** You can use this option to specify the reports to be published to HCL OneTest Server. The supported values are STATS,TESTLOG.
 
 ### `rate`
-Optional. You can use this argument to specify a rate that you want to achieve for a workload in the Rate Runner group,The Rate Runner group name must match with the name in the Rate Schedule.
+**Optional** Use this option to specify a rate that you want to achieve for a workload in the Rate Runner group. For example, "Rate Runner Group 1=1/s, 3/m", where, Rate Runner Group1 is the name of the rate runner group that has two stages. The desired rate for the first stage is one iteration per second and the rate for the second stage is three iterations per minute.
 
 ### `results`
-The name of the results file. The default result file is the test or schedule name with a time stamp appended.
+**Optional** Use this option to specify the name of the results file. The default name of the result file is the test or schedule name with a timestamp appended. You must specify a folder name that is relative to the project to store the test results.
 
 ### `userComments`
-Add text within double quotation mark to display it in the User Comments row of the report.
+**Optional** Use this option to add text that you want to display in the user comments row of the report.
 
 ### `varFile`
-The complete path to the XML file that contains the variable name and value pairs.
+**Optional** Use this option to specify the complete path to the XML file that contains the variable initialization.
 
 ### `vmArgs`
-Java virtual machine arguments to pass in.
+**Optional** Use this option to specify the Java maximum heap size for the Java process that controls the playback. For example, when you input the value as -Xmx4096m, it specifies the maximum heap size as 4GB.
