@@ -9073,6 +9073,12 @@ const main = async () => {
             }
             if (vmargs) {
                 script = script.concat(' -vmargs ' + '"' + vmargs + '"')
+            }
+            if (users) {
+                script = script.concat(' -users ' + '"' + users + '"')
+            }	
+            if (rate) {
+                script = script.concat(' -rate ' + '"' + rate + '"')
             }			
         }
 
