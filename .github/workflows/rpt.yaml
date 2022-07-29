@@ -25,5 +25,5 @@ jobs:
             publishFor: ALL
             publishReports: TESTLOG
             vmArgs: -Xmx4096m
-            labels: l1, l2
-            swapDatasets: /PT1/ds1.csv:/PT1/ds2.csv
+            duration: Stage1=10s; Stage2=5m
+            overrideRmLabels: rm1
