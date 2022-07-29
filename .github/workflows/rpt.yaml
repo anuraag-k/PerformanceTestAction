@@ -13,3 +13,8 @@ jobs:
             workspace: C:\Users\anuraag.k\HCL\hclonetest\workspace
             project: PT1
             suite: Test1
+            imShared: C:\Program Files\HCL\HCLIMShared
+            exportLog: D:\reports
+            exportStats: D:\reports
+            exportStatsHtml: D:\reports\html
+            exportStatsFormat: simple.json
