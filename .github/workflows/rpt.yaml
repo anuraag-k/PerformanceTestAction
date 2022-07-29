@@ -12,7 +12,7 @@ jobs:
            with:
             workspace: C:\Users\anuraag.k\HCL\hclonetest\workspace
             project: PT1
-            suite: Test1
+            suite: Test3
             imShared: C:\Program Files\HCL\HCLIMShared
             exportLog: D:\reports\logexport.txt
             exportStats: D:\reports
@@ -27,3 +27,4 @@ jobs:
             vmArgs: -Xmx4096m
             reportHistory: jaeger
             labels: l1, l2
+            swapDatasets: /PT1/ds1.csv:/PT1/ds2.csv
