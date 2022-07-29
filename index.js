@@ -23,25 +23,24 @@ const main = async () => {
         const swapdatasets = core.getInput('swapDatasets', { required: false });
         const duration = core.getInput('duration', false);
         const exportlog = core.getInput('exportLog', false);
-        const exportreport = core.getInput('exportReport', false);
 
-        var exportstats;
-        var exportstatshtml;
-        var exportstatsformat;
-        var exportstatreportlist;
-        var reporthistory;
-        var labels;
-        var overwrite;
-        var publish;
-        var publish_for;
-        var publishreports;
-        var rate;
-        var overridermlabels;
-        var results;
-        var users;
-        var usercomments;
-        var varfile;
-        var vmargs;
+        const exportstats = core.getInput('exportStats', { required: false });
+        const exportstatshtml = core.getInput('exportStatsHtml', { required: false });
+        const exportstatsformat = core.getInput('exportStatsFormat', { required: false });
+        const exportstatreportlist = core.getInput('exportStatReportList', { required: false });
+        const reporthistory = core.getInput('reportHistory', { required: false });
+        const labels = core.getInput('labels', { required: false });
+        const overwrite = core.getInput('overwrite', { required: false });
+        const publish = core.getInput('publish', { required: false });
+        const publish_for = core.getInput('publishFor', { required: false });
+        const publishreports = core.getInput('publishReports', { required: false });
+        const rate = core.getInput('rate', { required: false });
+        const overridermlabels = core.getInput('overrideRmLabels', { required: false });
+        const results = core.getInput('results', { required: false });
+        const users = core.getInput('users', { required: false });
+        const usercomments = core.getInput('userComments', { required: false });
+        const varfile = core.getInput('varFile', { required: false });
+        const vmargs = core.getInput('vmArgs', { required: false });
 
         if (!imshared) {
             imshared = getImsharedLoc(productpath);
@@ -111,9 +110,6 @@ const main = async () => {
             }
             if (usercomments) {
                 script = script.concat(' -usercomments ' + '"' + usercomments + '"')
-            }
-            if (exportreport) {
-                script = script.concat(' -exportReport ' + '"' + exportreport + '"')
             }
             if (exportstatsformat) {
                 script = script.concat(' -exportstatsformat ' + '"' + exportstatsformat + '"')
