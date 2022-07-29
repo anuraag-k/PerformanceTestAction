@@ -137,6 +137,12 @@ const main = async () => {
             }	
             if (rate) {
                 script = script.concat(' -rate ' + '"' + rate + '"')
+            }	
+            if (duration) {
+                script = script.concat(' -duration ' + '"' + duration + '"')
+            }	
+            if (overridermlabels) {
+                script = script.concat(' -overridermlabels ' + '"' + overridermlabels + '"')
             }			
         }
 
