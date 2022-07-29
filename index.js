@@ -129,6 +129,9 @@ const main = async () => {
             if (reporthistory) {
                 script = script.concat(' -history ' + '"' + reporthistory + '"')
             }
+            if (vmargs) {
+                script = script.concat(' -vmargs ' + '"' + vmargs + '"')
+            }			
         }
 
 
