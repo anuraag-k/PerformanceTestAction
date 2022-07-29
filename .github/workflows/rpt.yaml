@@ -1,55 +1,15 @@
 name: HCL OneTest Performance
 
-on:
-    workflow_dispatch:
-        inputs:
-            workspace:
-                description: 'Workspace'
-                required: true
-            project:
-                description: 'Project'
-                required: true
-            suite:
-                description: 'Test Suite Name'
-                required: true
-            imShared:
-                description: 'IMShared Path'
-                required: false
-            configFile:
-                description: 'Configfile'
-                required: false
-            swapDatasets:
-                description: 'Dataset Override'
-                required: false
-            duration:
-                description: 'Duration'
-                required: false
-            exportLog:
-                description: 'Exportlog'
-                required: false
-            exportStats:
-                description: 'Exportstats'
-                required: false
-            multipleValues:
-                description: 'Multiple Values'
-                required: false
+on: workflow_dispatch
 
 jobs:
-
     WebUI-Action:
         runs-on: self-hosted
         name: HCL OneTest Performance
         steps:
-         - name: HCL OneTest Performances
-           uses: SonaHJ/RPTAction@main
+         - name: HCL OneTest Performance
+           uses: anuraag-k/PerformanceTestAction@main
            with:
-            workspace: '${{ github.event.inputs.workspace }}'
-            project: '${{ github.event.inputs.project }}'
-            suite: '${{ github.event.inputs.suite }}'
-            imShared: '${{ github.event.inputs.imshared }}'
-            configFile: '${{ github.event.inputs.configFile }}'
-            swapDatasets: '${{ github.event.inputs.swapDatasets }}'
-            duration: '${{ github.event.inputs.duration }}'
-            exportLog: '${{ github.event.inputs.exportLog }}'
-            exportStats: '${{ github.event.inputs.exportStats }}'
-            multipleValues: '${{ github.event.inputs.multipleValues }}'
+            workspace: C:\Users\anuraag.k\HCL\hclonetest\workspace
+            project: PT1
+            suite: Test1
