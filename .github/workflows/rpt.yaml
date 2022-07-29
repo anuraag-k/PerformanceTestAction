@@ -18,3 +18,5 @@ jobs:
             exportStats: D:\reports
             exportStatsHtml: D:\reports\html
             exportStatsFormat: simple.json
+            results: MyResult
+            userComments: This is a comment
