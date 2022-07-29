@@ -25,6 +25,5 @@ jobs:
             publishFor: ALL
             publishReports: TESTLOG
             vmArgs: -Xmx4096m
-            reportHistory: jaeger
             labels: l1, l2
             swapDatasets: /PT1/ds1.csv:/PT1/ds2.csv
