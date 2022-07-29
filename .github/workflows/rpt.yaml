@@ -25,5 +25,4 @@ jobs:
             publishFor: ALL
             publishReports: TESTLOG
             vmArgs: -Xmx4096m
-            duration: Stage1=10s; Stage2=5m
-            overrideRmLabels: rm1
+            configFile: C:\Users\anuraag.k\HCL\hclonetest\workspace\PT1\config.txt
