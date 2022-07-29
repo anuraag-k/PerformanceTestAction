@@ -9041,6 +9041,9 @@ const main = async () => {
             if (overwrite) {
                 script = script.concat(' -overwrite ' + '"' + overwrite + '"')
             }
+			if (exportlog) {
+                script = script.concat(' -exportlog ' + '"' + exportlog + '"')
+            }
             if (exportstats) {
                 script = script.concat(' -exportstats ' + '"' + exportstats + '"')
             }
@@ -9067,7 +9070,7 @@ const main = async () => {
             }
             if (reporthistory) {
                 script = script.concat(' -history ' + '"' + reporthistory + '"')
-              }
+            }
         }
 
 
