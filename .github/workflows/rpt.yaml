@@ -3,7 +3,7 @@ name: HCL OneTest Performance
 on: workflow_dispatch
 
 jobs:
-    WebUI-Action:
+    Performance-Action:
         runs-on: self-hosted
         name: HCL OneTest Performance
         steps:
