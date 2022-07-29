@@ -82,11 +82,11 @@ inputs:
     required: false
   
   results:
-    description: '	Use this option to specify the name of the results file. The default name of the result file is the test or schedule name with a timestamp appended. You must specify a folder name that is relative to the project to store the test results.'
+    description: 'Use this option to specify the name of the results file. The default name of the result file is the test or schedule name with a timestamp appended. You must specify a folder name that is relative to the project to store the test results.'
     required: false
 
   users:
-    description: 'Use this option to override the default number of virtual users in the test or schedule run.'
+    description: 'Overrides the default number of virtual users in the run. For a schedule, the default is the number of users specified in the schedule editor. For a test, the default is one user.'
     required: false
 
   userComments:
