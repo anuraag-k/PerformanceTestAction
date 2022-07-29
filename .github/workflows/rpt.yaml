@@ -21,7 +21,7 @@ jobs:
             results: MyResult
             userComments: This is a comment
             overwrite: true
-            publish: https://master-hcl.tp-k8s.nonprod.hclpnp.com/#project.name=A_P2&teamspace.name=Initial%20Team%20Space
+            publish: https://master-hcl.tp-k8s.nonprod.hclpnp.com/#project.name=A_P2%26teamspace.name=Initial%20Team%20Space
             publishFor: ALL
             publishReports: TESTLOG
             vmArgs: -Xmx4096m
