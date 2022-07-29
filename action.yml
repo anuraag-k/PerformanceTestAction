@@ -36,10 +36,6 @@ inputs:
   exportStats:
     description: 'Use this option to export reports in comma-separated values (CSV) format'
     required: false
- 
-  multipleValues:
-    description: 'Use this option to to provide remaining inputs seperated by key value pair'
-    required: false
 
 runs:
   using: 'node16'
