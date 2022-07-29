@@ -12,7 +12,7 @@ jobs:
            with:
             workspace: C:\Users\anuraag.k\HCL\hclonetest\workspace
             project: PT1
-            suite: S1
+            suite: Test1
             imShared: C:\Program Files\HCL\HCLIMShared
             exportLog: D:\reports\logexport.txt
             exportStats: D:\reports
@@ -25,5 +25,5 @@ jobs:
             publishFor: ALL
             publishReports: TESTLOG
             vmArgs: -Xmx4096m
-            rate: Rate Runner Group 1=1/s, 3/m
-            users: 5
+            reportHistory: jaeger
+            labels: l1, l2
