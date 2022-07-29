@@ -28,7 +28,7 @@ jobs:
             configFile: 
             swapDatasets:
             duration:
-            exportStatReportList: http
+            exportStatReportList: syncPoint
             reportHistory:
             labels:
             rate:
