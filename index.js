@@ -24,7 +24,6 @@ const main = async () => {
         const duration = core.getInput('duration', false);
         const exportlog = core.getInput('exportLog', false);
         const exportreport = core.getInput('exportReport', false);
-        const multipleValues = core.getInput('multipleValues', { required: false });
 
         var exportstats;
         var exportstatshtml;
@@ -44,62 +43,6 @@ const main = async () => {
         var varfile;
         var vmargs;
 
-        if (!isEmptyOrSpaces(multipleValues)) {
-            var mult_value = multipleValues.split('|');
-            for (var i = 0; i < mult_value.length; i++) {
-                var value = new Array(); 
-                value[0] = mult_value[i].toString().substring(0, mult_value[i].indexOf('='));
-                value[1] = mult_value[i].toString().substring(mult_value[i].indexOf('=')+1);
-                if (value.length != 2) {
-                    throw new Error(
-                        "Please enter input in keyvalue format seperated by '='"
-                    );
-                } else if (isEmptyOrSpaces(value[0])) {
-                    throw new Error(
-                        "Input key is not given"
-                    );
-                } else if (isEmptyOrSpaces(value[1])) {
-                    throw new Error(
-                        "Input key value is not given"
-                    );
-                }
-                if (value[0] == 'exportStats') {
-                    exportstats = value[1];
-                } else if (value[0] == 'exportStatsHtml') {
-                    exportstatshtml = value[1];
-                } else if (value[0] == 'exportStatsFormat') {
-                    exportstatsformat = value[1];
-                } else if (value[0] == 'exportStatReportList') {
-                    exportstatreportlist = value[1];
-                } else if (value[0] == 'reportHistory') {
-                    reporthistory = value[1];
-                } else if (value[0] == 'exportReport') {
-                    exportreport = value[1];
-                } else if (value[0] == 'labels') {
-                    labels = value[1];
-                } else if (value[0] == 'overwrite') {
-                    overwrite = value[1];
-                } else if (value[0] == 'publish') {
-                    publish = value[1];
-                } else if (value[0] == 'publishFor') {
-                    publish_for = value[1];
-                } else if (value[0] == 'publishReports') {
-                    publishreports = value[1];
-                } else if (value[0] == 'rate') {
-                    rate = value[1];
-                } else if (value[0] == 'results') {
-                    results = value[1];
-                }else if (value[0] == 'users') {
-                    users = value[1];
-                }else if (value[0] == 'userComments') {
-                    usercomments = value[1];
-                }else if (value[0] == 'varFile') {
-                    varfile = value[1];
-                }else if (value[0] == 'vmArgs') {
-                    vmargs = value[1];
-                }
-            }
-        }
         if (!imshared) {
             imshared = getImsharedLoc(productpath);
         }
@@ -117,7 +60,7 @@ const main = async () => {
         }
         else {
             if (workspace == null || project == null || suite == null || imshared == null) {
-                core.setFailed("WorkSpace,Project & Suite are mandotory parameters");
+                core.setFailed("WorkSpace,Project & Suite are mandatory parameters");
             }
             if (process.platform == 'linux') {
                 script = 'cd ' + '"' + productpath + '/cmdline"' + '\n'
