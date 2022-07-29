@@ -26,3 +26,12 @@ jobs:
             publishReports: TESTLOG
             vmArgs: -Xmx4096m
             configFile: C:\Users\anuraag.k\HCL\hclonetest\workspace\PT1\config.txt
+            swapDatasets:
+            duration:
+            exportStatReportList: http
+            reportHistory:
+            labels:
+            rate:
+            overrideRmLabels:
+            users:
+            varFile:
