@@ -7,7 +7,7 @@ jobs:
         runs-on: self-hosted
         name: HCL OneTest Performance
         steps:
-         - name: HCL OneTest Performances
+         - name: HCL OneTest Performance
            uses: anuraag-k/PerformanceTestAction@main
            with:
             workspace: C:\Users\anuraag.k\HCL\hclonetest\workspace
