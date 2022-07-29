@@ -18,7 +18,7 @@ inputs:
     required: false
 
   configFile:
-    description: 'Use this option to specify the complete path to a file that contains the parameters for a test run'
+    description: 'Use this option to specify the complete path to a file that contains the parameters for a test run. If Config file is specified then no other fields will be required.'
     required: false
   
   duration:
@@ -26,7 +26,7 @@ inputs:
     required: false
 
   exportLog:
-    description: 'You can use this parameter to specify the file directory path to store the exported HTTP test log.'
+    description: 'You can use this parameter to specify the file directory path to store the exported HTTP test log. You can provide multiple parameter entries when running multiple tests. You must use a colon to separate the parameter entries. For example: c:/logexport.txt:c:/secondlogexport.txt'
     required: false
 
   exportStats:
