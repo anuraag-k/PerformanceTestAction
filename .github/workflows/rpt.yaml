@@ -12,7 +12,7 @@ jobs:
            with:
             workspace: C:\Users\anuraag.k\HCL\hclonetest\workspace
             project: PT1
-            suite: Test2
+            suite: Test3
             imShared: C:\Program Files\HCL\HCLIMShared
             exportLog: D:\reports\logexport.txt
             exportStats: D:\reports
@@ -25,4 +25,5 @@ jobs:
             publishFor: ALL
             publishReports: TESTLOG
             vmArgs: -Xmx4096m
-            varFile: C:\Users\anuraag.k\HCL\hclonetest\workspace\PT1\varinit.varinit
+            labels: l1, l2
+            swapDatasets: /PT1/ds1.csv:/PT1/ds2.csv
