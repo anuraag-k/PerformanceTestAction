@@ -90,6 +90,10 @@ To configure agent:
 
 **Optional** You can use this parameter to specify the file directory path to store the exported HTTP test log. You can provide multiple parameter entries when running multiple tests. You must use a colon to separate the parameter entries. For example: c:/logexport.txt:c:/secondlogexport.txt
 
+### `exportStatReportList`
+
+**Optional** You can use this option to specify a comma-separated list of report IDs along with exportstats or exportstatshtml to list the reports that you want to export in place of the default reports, or the reports selected under Preferences. To retrieve the report IDs, navigate to Window > Preferences > Test > Performance Test Reports > Export Reports from HCL OneTest™ Performance and under Select reports to export, select the required reports, and click Copy ID to clipboard.
+
 ### `exportStats`
 
 **Optional** Use this option to provide the complete path to a directory that you can use to store the exported report in a comma-separated values (CSV) format.
@@ -102,6 +106,9 @@ To configure agent:
 
 ### `labels`
 **Optional** Use this option to add labels to test results. To add multiple labels to a test result, you must separate each label by using a comma.
+
+### `overrideRmLabels`
+**Optional** Use this option to enable the Resource Monitoring from Service option for a performance schedule if the Resource Monitoring from Service option is not enabled from the schedule editor in HCL OneTest™ Performance, ignore Resource Monitoring sources that were set in the performance schedule and to change for a label matching mode, replace an existing set of Resource Monitoring labels that were set in the performance schedule and run the schedule with a new set of Resource Monitoring labels.
 
 ### `overwrite`
 **Optional** Determines whether a result file with the same name is overwritten. The default value, false, indicates that the new result file is created. If the value is true, the file is overwritten and retains the same file name.
