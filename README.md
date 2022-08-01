@@ -24,31 +24,31 @@ jobs:
          - name: HCL OneTest Performance
            uses: anuraag-k/PerformanceTestAction@main
            with:
-            workspace:
+            workspace: 
             project: 
             suite: 
             imShared: 
+            configFile: 
+            duration:
             exportLog: 
+            exportStatReportList: 
             exportStats: 
-            exportStatsHtml: 
             exportStatsFormat: 
-            results: 
-            userComments: 
+            exportStatsHtml: 
+            labels:
+            overrideRmLabels:
             overwrite: 
             publish: 
             publishFor: 
             publishReports: 
-            vmArgs: 
-            configFile: 
-            swapDatasets:
-            duration:
-            exportStatReportList: 
-            reportHistory:
-            labels:
             rate:
-            overrideRmLabels:
+            reportHistory:
+            results: 
+            swapDatasets:
+            userComments:             
             users:
             varFile:
+            vmArgs:
 ```
 7. Replace the example input values with your details.
 8. Push it into the main branch
@@ -82,10 +82,6 @@ To configure agent:
 
 **Optional** The complete path to a file that contains the parameters for a test or schedule run. If Config file is specified then no other fields will be required.
 
-### `swapDatasets`
-
-**Optional** Use this option to replace dataset values during a test or schedule run. You must ensure that both original and new datasets are in the same workspace and have the same column names. You must also include the path to the dataset. For example, /project_name/ds_path/ds_filename.csv:/project_name/ds_path/new_ds_filename.csv
-
 ### `duration`
 
 **Optional** You can use this argument to specify the duration of the stages in the Rate Schedule.
@@ -98,20 +94,14 @@ To configure agent:
 
 **Optional** Use this option to provide the complete path to a directory that you can use to store the exported report in a comma-separated values (CSV) format.
 
-### `exportStatsHtml`
-**Optional** Use this option to provide the complete path to a directory that you can use to export web analytic results. You can analyze the results on a web browser without using HCL OneTest™ Performance.
-
 ### `exportStatsFormat`
 **Optional** Use this field to enter one or more formats for the reports that you want to export by using a comma as a separator. The options are simple.csv, full.csv, simple.json, full.json, csv, and json. When you want to export both simple and full reports in json or csv format, you can specify json or csv as the options. The reports are saved to the location specified in the exportStats field. This field must be used in conjunction with exportStats field.
 
-### `reportHistory`
-**Optional** Use this option when you want to view a record of all events that occurred during a test or schedule run. Supported values are jaeger, testlog, null.
+### `exportStatsHtml`
+**Optional** Use this option to provide the complete path to a directory that you can use to export web analytic results. You can analyze the results on a web browser without using HCL OneTest™ Performance.
 
 ### `labels`
 **Optional** Use this option to add labels to test results. To add multiple labels to a test result, you must separate each label by using a comma.
-
-### `users`
-**Optional** Overrides the default number of virtual users in the run. For a schedule, the default is the number of users specified in the schedule editor. For a test, the default is one user.
 
 ### `overwrite`
 **Optional** Determines whether a result file with the same name is overwritten. The default value, false, indicates that the new result file is created. If the value is true, the file is overwritten and retains the same file name.
@@ -131,8 +121,18 @@ To configure agent:
 ### `results`
 **Optional** Use this option to specify the name of the results file. The default name of the result file is the test or schedule name with a timestamp appended. You must specify a folder name that is relative to the project to store the test results.
 
+### `reportHistory`
+**Optional** Use this option when you want to view a record of all events that occurred during a test or schedule run. Supported values are jaeger, testlog, null.
+
+### `swapDatasets`
+
+**Optional** Use this option to replace dataset values during a test or schedule run. You must ensure that both original and new datasets are in the same workspace and have the same column names. You must also include the path to the dataset. For example, /project_name/ds_path/ds_filename.csv:/project_name/ds_path/new_ds_filename.csv
+
 ### `userComments`
 **Optional** Use this option to add text that you want to display in the user comments row of the report.
+
+### `users`
+**Optional** Overrides the default number of virtual users in the run. For a schedule, the default is the number of users specified in the schedule editor. For a test, the default is one user.
 
 ### `varFile`
 **Optional** Use this option to specify the complete path to the XML file that contains the variable initialization.
