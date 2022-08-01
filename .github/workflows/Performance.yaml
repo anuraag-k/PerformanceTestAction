@@ -31,7 +31,7 @@ jobs:
             reportHistory:
             results: 
             swapDatasets:
-            users:
             userComments: 
+            users:
             varFile:
             vmArgs:
