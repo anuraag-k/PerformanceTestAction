@@ -12,7 +12,7 @@ jobs:
            with:
             workspace: C:\Users\anuraag.k\HCL\hclonetest\workspace_pt
             project: PT1
-            suite: Test1
+            suite: 
             imShared: 
             configFile: 
             duration:
