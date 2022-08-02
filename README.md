@@ -64,15 +64,15 @@ To configure agent:
 
 ### `workspace`
 
-**Required** Complete path to Eclipse workspace.
+**Required** Complete path to Eclipse workspace, required if configFile is not specified.
 
 ### `project`
 
-**Required** The name of the project containing the test.	
+**Required** The name of the project containing the test, required if configFile is not specified.
 
 ### `suite`
 
-**Required** Specify the relative path from the project to the test including the file name of the test. A test can be WebUI test, Compound test, Performance schedule or Accelerated Functional Test (AFT) suite. The test suite name must contain the file extension when it is an AFT suite. To run multiple tests from the same project sequentially, you must separate the tests by a colon (:). If you provide multiple tests, you cannot include an AFT suite along with it.
+**Required** Specify the relative path from the project to the test including the file name of the test. A test can be a Performance test, Schedule, or Compound test and required if configFile is not specified.
 
 ### `imShared`
 
@@ -88,7 +88,7 @@ To configure agent:
 
 ### `exportLog`
 
-**Optional** You can use this parameter to specify the file directory path to store the exported HTTP test log. You can provide multiple parameter entries when running multiple tests. You must use a colon to separate the parameter entries. For example: c:/logexport.txt:c:/secondlogexport.txt
+**Optional** You can use this option to specify the file directory path to store the exported HTTP test log. You can provide multiple parameter entries when running multiple tests. You must use a colon to separate the parameter entries. For example: c:/logexport.txt:c:/secondlogexport.txt
 
 ### `exportStatReportList`
 
@@ -99,7 +99,7 @@ To configure agent:
 **Optional** Use this option to provide the complete path to a directory that you can use to store the exported report in a comma-separated values (CSV) format.
 
 ### `exportStatsFormat`
-**Optional** Use this field to enter one or more formats for the reports that you want to export by using a comma as a separator. The options are simple.csv, full.csv, simple.json, full.json, csv, and json. When you want to export both simple and full reports in json or csv format, you can specify json or csv as the options. The reports are saved to the location specified in the exportStats field. This field must be used in conjunction with exportStats field.
+**Optional** Use this option to enter one or more formats for the reports that you want to export by using a comma as a separator. The options are simple.csv, full.csv, simple.json, full.json, csv, and json. When you want to export both simple and full reports in json or csv format, you can specify json or csv as the options. The reports are saved to the location specified in the exportStats field. This field must be used in conjunction with exportStats field.
 
 ### `exportStatsHtml`
 **Optional** Use this option to provide the complete path to a directory that you can use to export web analytic results. You can analyze the results on a web browser without using HCL OneTest™ Performance.
@@ -114,7 +114,7 @@ To configure agent:
 **Optional** Determines whether a result file with the same name is overwritten. The default value, false, indicates that the new result file is created. If the value is true, the file is overwritten and retains the same file name.
 
 ### `publish`
-**Optional** YYou can use this parameter to publish test results to the Server. The format is: serverURL#project.name=projectName&teamspace.name=teamspaceName. If the name of the project or team space contains a special character, then you must replace it with %<Hex_value_of_special_character>.
+**Optional** YYou can use this option to publish test results to the Server. The format is: serverURL#project.name=projectName&teamspace.name=teamspaceName. If the name of the project or team space contains a special character, then you must replace it with %<Hex_value_of_special_character>.
 
 ### `publishFor`
 **Optional** You can use this option to publish the test results based on the completion status of the tests, supported values are FAIL,PASS,INCONCLUSIVE,ERROR,ALL.
