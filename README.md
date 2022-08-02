@@ -2,7 +2,7 @@
 
 This action enables you to run HCL OneTest Performace tests.
 
-## Pre requisites
+## Prerequisites
 
 1. Create a github repository
 2. Create a folder named ".github/workflows" in the root of the repository
