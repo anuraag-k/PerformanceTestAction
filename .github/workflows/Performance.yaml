@@ -12,24 +12,24 @@ jobs:
            with:
             workspace: C:\Users\anuraag.k\HCL\hclonetest\workspace_pt
             project: PT1
-            suite: 
+            suite: Test1
             imShared: 
-            configFile: C:\Users\anuraag.k\HCL\hclonetest\workspace_pt\PT1\config.txt
+            configFile: 
             duration:
             exportLog: 
             exportStatReportList: 
-            exportStats: 
+            exportStats: D:\reports\
             exportStatsFormat: 
             exportStatsHtml: 
-            labels:
+            labels: l1
             overrideRmLabels:
             overwrite: 
-            publish: 
+            publish: https://master-hcl.tp-k8s.nonprod.hclpnp.com/#project.name=A_P2&teamspace.name=Initial%20Team%20Space
             publishFor: 
             publishReports: 
             rate:
             reportHistory:
-            results: 
+            results: MyResult
             swapDatasets:
             userComments: 
             users:
