@@ -14,7 +14,7 @@ jobs:
             project: PT1
             suite: 
             imShared: 
-            configFile: C:\Users\anuraag.k\HCL\hclonetest\workspace_pt\config.txt
+            configFile: C:\Users\anuraag.k\HCL\hclonetest\workspace_pt\PT1\config.txt
             duration:
             exportLog: 
             exportStatReportList: 
