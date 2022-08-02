@@ -84,7 +84,7 @@ To configure agent:
 
 ### `duration`
 
-**Optional** You can use this argument to specify the duration of the stages in the Rate Schedule.
+**Optional** You can use this option to specify the duration of the stages in the Rate Schedule.
 
 ### `exportLog`
 
