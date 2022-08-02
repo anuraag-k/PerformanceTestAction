@@ -11,25 +11,25 @@ jobs:
            uses: anuraag-k/PerformanceTestAction@main
            with:
             workspace: 
-            project: PT1
-            suite: Test1
+            project: 
+            suite: 
             imShared: 
             configFile: 
             duration:
             exportLog: 
             exportStatReportList: 
-            exportStats: D:\reports\
+            exportStats: 
             exportStatsFormat: 
             exportStatsHtml: 
-            labels: l1
+            labels: 
             overrideRmLabels:
             overwrite: 
-            publish: https://master-hcl.tp-k8s.nonprod.hclpnp.com/#project.name=A_P2&teamspace.name=Initial%20Team%20Space
+            publish: 
             publishFor: 
             publishReports: 
             rate:
             reportHistory:
-            results: MyResult
+            results: 
             swapDatasets:
             userComments: 
             users:
