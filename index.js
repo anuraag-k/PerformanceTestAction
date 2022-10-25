@@ -6,7 +6,7 @@ const url = require("url");
 const os = require('os');
 const fs = require('fs');
 
-var uuidV4 = require("uuid");
+import { v4 as uuidv4 } from 'uuid';
 
 const main = async () => {
     try {
