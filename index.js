@@ -150,18 +150,14 @@ const main = async () => {
 
         let tempDir = os.tmpdir();
         let filePath = path.join(tempDir, suite + '.ps1');
+        try {
         await fs.writeFileSync(
             filePath,
             script,
-            { encoding: 'utf8' },
-            function(err) {
-
-                if (err) 
-        return console.error(err);
-            }
-            
-            
-            );
+            { encoding: 'utf8' });
+        } catch(e) {
+            console.error(e);
+        }
 
         console.log(script);
         console.log('========================== Starting Command Output ===========================');
