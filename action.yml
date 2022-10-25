@@ -1,5 +1,8 @@
-name: 'HCL OneTest Performance'
-description: 'HCL OneTest Performance to execute performance test from GitHub Action.'
+name: 'HCL OneTest Performance GitHub Action'
+description: 'Execute HCL OneTest Performance based schedules and tests from GitHub Actions workflows.'
+branding:
+  icon: 'check-square'
+  color: 'purple'
 inputs:
   workspace:
     description: 'The complete path to the Eclipse workspace, required if Config File is not specified'
