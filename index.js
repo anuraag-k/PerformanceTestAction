@@ -16,6 +16,8 @@ const main = async () => {
         const productpath = getProductPath();
         const configfile = core.getInput('configFile', { required: false });
         var suite;
+		
+		console.log(">>>>>>>>>>>>>>>The new logs are here");
 
         if (configfile) {
             if (process.platform == 'linux') {
