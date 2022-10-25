@@ -8,11 +8,11 @@ jobs:
         name: HCL OneTest Performance
         steps:
          - name: HCL OneTest Performance
-           uses: HCL-TECH-SOFTWARE/onetest-perf-action@main
+           uses: anuraag-k/PerformanceTestAction@main
            with:
-            workspace: 
-            project: 
-            suite: 
+            workspace: C:\Users\anuraag.k\HCL\hclonetest\workspace_pt
+            project: PT1
+            suite: Tests/Test
             imShared: 
             configFile: 
             duration:
