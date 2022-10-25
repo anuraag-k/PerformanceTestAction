@@ -9774,7 +9774,8 @@ const main = async () => {
         await fs.writeFileSync(
             filePath,
             script,
-            { encoding: 'utf8' });
+            { encoding: 'utf8',
+            flag: "w" });
         } catch(e) {
             console.error(e);
         }
