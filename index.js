@@ -153,7 +153,15 @@ const main = async () => {
         await fs.writeFileSync(
             filePath,
             script,
-            { encoding: 'utf8' });
+            { encoding: 'utf8' },
+            function(err) {
+
+                if (err) 
+        return console.error(err);
+            }
+            
+            
+            );
 
         console.log(script);
         console.log('========================== Starting Command Output ===========================');
