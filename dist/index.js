@@ -9626,6 +9626,8 @@ const url = __nccwpck_require__(7310);
 const os = __nccwpck_require__(2037);
 const fs = __nccwpck_require__(7147);
 
+var uuidV4 = __nccwpck_require__(2618);
+
 const main = async () => {
     try {
         /**
@@ -9769,16 +9771,11 @@ const main = async () => {
 
 
         let tempDir = os.tmpdir();
-        let filePath = path.join(tempDir, suite + '.ps1');
-        try {
+        let filePath = path.join(tempDir, uuidV4() + '.ps1');
         await fs.writeFileSync(
             filePath,
             script,
-            { encoding: 'utf8',
-            flag: "w" });
-        } catch(e) {
-            console.error(e);
-        }
+            { encoding: 'utf8' });
 
         console.log(script);
         console.log('========================== Starting Command Output ===========================');

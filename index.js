@@ -6,6 +6,8 @@ const url = require("url");
 const os = require('os');
 const fs = require('fs');
 
+var uuidV4 = require("uuid");
+
 const main = async () => {
     try {
         /**
@@ -149,16 +151,11 @@ const main = async () => {
 
 
         let tempDir = os.tmpdir();
-        let filePath = path.join(tempDir, suite + '.ps1');
-        try {
+        let filePath = path.join(tempDir, uuidV4() + '.ps1');
         await fs.writeFileSync(
             filePath,
             script,
-            { encoding: 'utf8',
-            flag: "w" });
-        } catch(e) {
-            console.error(e);
-        }
+            { encoding: 'utf8' });
 
         console.log(script);
         console.log('========================== Starting Command Output ===========================');
