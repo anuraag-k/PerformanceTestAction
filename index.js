@@ -6,8 +6,6 @@ const url = require("url");
 const os = require('os');
 const fs = require('fs');
 
-import { v4 as uuidv4 } from 'uuid';
-
 const main = async () => {
     try {
         /**
@@ -18,8 +16,6 @@ const main = async () => {
         const productpath = getProductPath();
         const configfile = core.getInput('configFile', { required: false });
         var suite;
-		
-		console.log(">>>>>>>>>>>>>>>The new logs are here");
 
         if (configfile) {
             if (process.platform == 'linux') {
@@ -151,7 +147,7 @@ const main = async () => {
 
 
         let tempDir = os.tmpdir();
-        let filePath = path.join(tempDir, uuidV4() + '.ps1');
+        let filePath = path.join(tempDir, suite + '.ps1');
         await fs.writeFileSync(
             filePath,
             script,

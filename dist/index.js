@@ -140,6 +140,7 @@ const file_command_1 = __nccwpck_require__(2269);
 const utils_1 = __nccwpck_require__(3166);
 const os = __importStar(__nccwpck_require__(2037));
 const path = __importStar(__nccwpck_require__(1017));
+const uuid_1 = __nccwpck_require__(2618);
 const oidc_utils_1 = __nccwpck_require__(254);
 /**
  * The code to exit an action
@@ -169,9 +170,20 @@ function exportVariable(name, val) {
     process.env[name] = convertedVal;
     const filePath = process.env['GITHUB_ENV'] || '';
     if (filePath) {
-        return file_command_1.issueFileCommand('ENV', file_command_1.prepareKeyValueMessage(name, val));
+        const delimiter = `ghadelimiter_${uuid_1.v4()}`;
+        // These should realistically never happen, but just in case someone finds a way to exploit uuid generation let's not allow keys or values that contain the delimiter.
+        if (name.includes(delimiter)) {
+            throw new Error(`Unexpected input: name should not contain the delimiter "${delimiter}"`);
+        }
+        if (convertedVal.includes(delimiter)) {
+            throw new Error(`Unexpected input: value should not contain the delimiter "${delimiter}"`);
+        }
+        const commandValue = `${name}<<${delimiter}${os.EOL}${convertedVal}${os.EOL}${delimiter}`;
+        file_command_1.issueCommand('ENV', commandValue);
     }
-    command_1.issueCommand('set-env', { name }, convertedVal);
+    else {
+        command_1.issueCommand('set-env', { name }, convertedVal);
+    }
 }
 exports.exportVariable = exportVariable;
 /**
@@ -189,7 +201,7 @@ exports.setSecret = setSecret;
 function addPath(inputPath) {
     const filePath = process.env['GITHUB_PATH'] || '';
     if (filePath) {
-        file_command_1.issueFileCommand('PATH', inputPath);
+        file_command_1.issueCommand('PATH', inputPath);
     }
     else {
         command_1.issueCommand('add-path', {}, inputPath);
@@ -229,10 +241,7 @@ function getMultilineInput(name, options) {
     const inputs = getInput(name, options)
         .split('\n')
         .filter(x => x !== '');
-    if (options && options.trimWhitespace === false) {
-        return inputs;
-    }
-    return inputs.map(input => input.trim());
+    return inputs;
 }
 exports.getMultilineInput = getMultilineInput;
 /**
@@ -265,12 +274,8 @@ exports.getBooleanInput = getBooleanInput;
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function setOutput(name, value) {
-    const filePath = process.env['GITHUB_OUTPUT'] || '';
-    if (filePath) {
-        return file_command_1.issueFileCommand('OUTPUT', file_command_1.prepareKeyValueMessage(name, value));
-    }
     process.stdout.write(os.EOL);
-    command_1.issueCommand('set-output', { name }, utils_1.toCommandValue(value));
+    command_1.issueCommand('set-output', { name }, value);
 }
 exports.setOutput = setOutput;
 /**
@@ -399,11 +404,7 @@ exports.group = group;
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function saveState(name, value) {
-    const filePath = process.env['GITHUB_STATE'] || '';
-    if (filePath) {
-        return file_command_1.issueFileCommand('STATE', file_command_1.prepareKeyValueMessage(name, value));
-    }
-    command_1.issueCommand('save-state', { name }, utils_1.toCommandValue(value));
+    command_1.issueCommand('save-state', { name }, value);
 }
 exports.saveState = saveState;
 /**
@@ -469,14 +470,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.prepareKeyValueMessage = exports.issueFileCommand = void 0;
+exports.issueCommand = void 0;
 // We use any as a valid input type
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const fs = __importStar(__nccwpck_require__(7147));
 const os = __importStar(__nccwpck_require__(2037));
-const uuid_1 = __nccwpck_require__(2618);
 const utils_1 = __nccwpck_require__(3166);
-function issueFileCommand(command, message) {
+function issueCommand(command, message) {
     const filePath = process.env[`GITHUB_${command}`];
     if (!filePath) {
         throw new Error(`Unable to find environment variable for file command ${command}`);
@@ -488,22 +488,7 @@ function issueFileCommand(command, message) {
         encoding: 'utf8'
     });
 }
-exports.issueFileCommand = issueFileCommand;
-function prepareKeyValueMessage(key, value) {
-    const delimiter = `ghadelimiter_${uuid_1.v4()}`;
-    const convertedValue = utils_1.toCommandValue(value);
-    // These should realistically never happen, but just in case someone finds a
-    // way to exploit uuid generation let's not allow keys or values that contain
-    // the delimiter.
-    if (key.includes(delimiter)) {
-        throw new Error(`Unexpected input: name should not contain the delimiter "${delimiter}"`);
-    }
-    if (convertedValue.includes(delimiter)) {
-        throw new Error(`Unexpected input: value should not contain the delimiter "${delimiter}"`);
-    }
-    return `${key}<<${delimiter}${os.EOL}${convertedValue}${os.EOL}${delimiter}`;
-}
-exports.prepareKeyValueMessage = prepareKeyValueMessage;
+exports.issueCommand = issueCommand;
 //# sourceMappingURL=file-command.js.map
 
 /***/ }),
@@ -1090,9 +1075,8 @@ exports.context = new Context.Context();
  * @param     token    the repo PAT or GITHUB_TOKEN
  * @param     options  other options to set
  */
-function getOctokit(token, options, ...additionalPlugins) {
-    const GitHubWithPlugins = utils_1.GitHub.plugin(...additionalPlugins);
-    return new GitHubWithPlugins(utils_1.getOctokitOptions(token, options));
+function getOctokit(token, options) {
+    return new utils_1.GitHub(utils_1.getOctokitOptions(token, options));
 }
 exports.getOctokit = getOctokit;
 //# sourceMappingURL=github.js.map
@@ -1174,7 +1158,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getOctokitOptions = exports.GitHub = exports.defaults = exports.context = void 0;
+exports.getOctokitOptions = exports.GitHub = exports.context = void 0;
 const Context = __importStar(__nccwpck_require__(7821));
 const Utils = __importStar(__nccwpck_require__(3163));
 // octokit + plugins
@@ -1183,13 +1167,13 @@ const plugin_rest_endpoint_methods_1 = __nccwpck_require__(3652);
 const plugin_paginate_rest_1 = __nccwpck_require__(1237);
 exports.context = new Context.Context();
 const baseUrl = Utils.getApiBaseUrl();
-exports.defaults = {
+const defaults = {
     baseUrl,
     request: {
         agent: Utils.getProxyAgent(baseUrl)
     }
 };
-exports.GitHub = core_1.Octokit.plugin(plugin_rest_endpoint_methods_1.restEndpointMethods, plugin_paginate_rest_1.paginateRest).defaults(exports.defaults);
+exports.GitHub = core_1.Octokit.plugin(plugin_rest_endpoint_methods_1.restEndpointMethods, plugin_paginate_rest_1.paginateRest).defaults(defaults);
 /**
  * Convience function to correctly format Octokit Options to pass into the constructor.
  *
@@ -9610,27 +9594,14 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__nccwpck_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
-__nccwpck_require__.r(__webpack_exports__);
 const core = __nccwpck_require__(6874);
 const github = __nccwpck_require__(1000);
 const path = __nccwpck_require__(1017);
@@ -9638,8 +9609,6 @@ const url = __nccwpck_require__(7310);
 
 const os = __nccwpck_require__(2037);
 const fs = __nccwpck_require__(7147);
-
-
 
 const main = async () => {
     try {
@@ -9651,8 +9620,6 @@ const main = async () => {
         const productpath = getProductPath();
         const configfile = core.getInput('configFile', { required: false });
         var suite;
-		
-		console.log(">>>>>>>>>>>>>>>The new logs are here");
 
         if (configfile) {
             if (process.platform == 'linux') {
@@ -9784,7 +9751,7 @@ const main = async () => {
 
 
         let tempDir = os.tmpdir();
-        let filePath = path.join(tempDir, uuidV4() + '.ps1');
+        let filePath = path.join(tempDir, suite + '.ps1');
         await fs.writeFileSync(
             filePath,
             script,
